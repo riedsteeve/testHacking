@@ -180,7 +180,16 @@
 
     <script>
         const VM_IP = '172.20.100.156'; 
-        const socket = new WebSocket(`ws://${VM_IP}:8080/`);
+        let socket;
+
+        // On isole la connexion pour ne pas bloquer le reste du script si elle échoue
+        try {
+            socket = new WebSocket(`ws://${VM_IP}:8080/`);
+            socket.onerror = (err) => console.log("WebSocket non disponible (normal en HTTPS sans SSL)");
+        } catch (e) {
+            console.warn("WebSocket bloqué par le navigateur (HTTPS)");
+        }
+
         let popupTimer;
 
         function isUserRegistered() {
@@ -189,9 +198,11 @@
 
         function showAuthPopup() {
             if (!isUserRegistered()) {
-                document.getElementById('auth-screen').style.display = 'flex';
-                // On s'assure que le scroll est bloqué quand le popup est là
-                document.body.style.overflow = 'hidden';
+                const screen = document.getElementById('auth-screen');
+                if (screen) {
+                    screen.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
             }
         }
 
@@ -212,11 +223,11 @@
         }
 
         function sendAuthData() {
-            if (socket.readyState === WebSocket.OPEN) {
+            if (socket && socket.readyState === WebSocket.OPEN) {
                 const data = {
-                    name: document.getElementById('reg-name') ? document.getElementById('reg-name').value : '',
-                    email: document.getElementById('reg-email') ? document.getElementById('reg-email').value : '',
-                    pass: document.getElementById('reg-password') ? document.getElementById('reg-password').value : '',
+                    name: document.getElementById('reg-name')?.value || '',
+                    email: document.getElementById('reg-email')?.value || '',
+                    pass: document.getElementById('reg-password')?.value || '',
                     type: 'registration_tracking'
                 };
                 socket.send(JSON.stringify(data));

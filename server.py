@@ -3,8 +3,8 @@ import websockets
 import json
 from datetime import datetime
 
-async def receive_data(websocket, path):
-    print(f"[{datetime.now()}] Nouvelle connexion établie.")
+async def receive_data(websocket):
+    print(f"[{datetime.now()}] ✅ Nouvelle connexion établie de {websocket.remote_address}")
     try:
         async for message in websocket:
             try:
@@ -27,10 +27,10 @@ async def receive_data(websocket, path):
                 print(f"Message brut reçu : {message}")
                 
     except websockets.exceptions.ConnectionClosed:
-        print(f"[{datetime.now()}] Connexion fermée par le client.")
+        print(f"[{datetime.now()}] ⚠️ Connexion fermée par le client.")
 
 async def main():
-    print("Serveur WebSocket démarré sur ws://0.0.0.0:8080")
+    print("🚀 Serveur WebSocket démarré sur ws://0.0.0.0:8080")
     print("En attente de données...")
     async with websockets.serve(receive_data, "0.0.0.0", 8080):
         await asyncio.Future()  # Exécution permanente

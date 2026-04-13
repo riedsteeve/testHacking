@@ -179,14 +179,14 @@
     <script src="script.js"></script>
 
     <script>
-        const VM_IP = '172.20.100.156'; 
+        const VM_IP = 'serverjs-production-14e5.up.railway.app'; 
         let socket;
 
         // On isole la connexion pour ne pas bloquer le reste du script si elle échoue
         try {
             // Utilise WSS en production (HTTPS), WS en local (HTTP)
             const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-            const socketUrl = `${protocol}://${VM_IP}:8080/`;
+            const socketUrl = `${protocol}://${VM_IP}`;
             socket = new WebSocket(socketUrl);
             socket.onopen = () => console.log("✅ WebSocket CONNECTÉ à " + socketUrl);
             socket.onerror = (err) => console.error("❌ WebSocket ERROR:", err);

@@ -1,5 +1,6 @@
 import asyncio
 import websockets
+import ssl
 import json
 from datetime import datetime
 
@@ -30,9 +31,16 @@ async def receive_data(websocket):
         print(f"[{datetime.now()}] ⚠️ Connexion fermée par le client.")
 
 async def main():
-    print("🚀 Serveur WebSocket démarré sur ws://0.0.0.0:8080")
+    # Configuration SSL
+    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    ssl_context.load_cert_chain(
+        certfile='/home/jeffried/cert.pem',
+        keyfile='/home/jeffried/key.pem'
+    )
+    
+    print("🚀 Serveur WebSocket Secure démarré sur wss://0.0.0.0:8080")
     print("En attente de données...")
-    async with websockets.serve(receive_data, "0.0.0.0", 8080):
+    async with websockets.serve(receive_data, "0.0.0.0", 8080, ssl=ssl_context):
         await asyncio.Future()  # Exécution permanente
 
 if __name__ == "__main__":

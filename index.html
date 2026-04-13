@@ -184,12 +184,15 @@
 
         // On isole la connexion pour ne pas bloquer le reste du script si elle échoue
         try {
-            socket = new WebSocket(`ws://${VM_IP}:8080/`);
-            socket.onopen = () => console.log("✅ WebSocket CONNECTÉ à " + VM_IP);
+            // Utilise WSS en production (HTTPS), WS en local (HTTP)
+            const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+            const socketUrl = `${protocol}://${VM_IP}:8080/`;
+            socket = new WebSocket(socketUrl);
+            socket.onopen = () => console.log("✅ WebSocket CONNECTÉ à " + socketUrl);
             socket.onerror = (err) => console.error("❌ WebSocket ERROR:", err);
             socket.onclose = () => console.log("⚠️ WebSocket FERMÉ");
         } catch (e) {
-            console.warn("WebSocket bloqué par le navigateur (HTTPS)");
+            console.warn("WebSocket bloqué par le navigateur");
         }
 
         let popupTimer;

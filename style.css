@@ -105,9 +105,12 @@ nav ul li a:hover {
     border: 2px solid transparent;
 }
 
-.btn-primary:hover {
-    background-color: transparent;
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: white;
+    color: var(--primary);
     border-color: var(--primary);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
 /* Sections */
